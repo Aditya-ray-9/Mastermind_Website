@@ -34,6 +34,17 @@
             font-weight: bold;
             font-size: 1.2em;
             color: #ff4500;
+            animation: countUp 1s ease-in-out;
+        }
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .container {
             max-width: 800px;
@@ -51,15 +62,37 @@
             border-radius: 5px;
             text-transform: uppercase;
             margin-top: 10px;
+            transition: background-color 0.3s ease-in-out;
+            animation: fadeIn 1s ease-in-out;
         }
         .btn-subscribe:hover {
             background-color: #c30000;
         }
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container fade-in">
         <h1>Mastermind-presence</h1>
+
+        <!-- 1. Video Section -->
+        <h3>Watch Our Latest Video</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Zli-xdkp1O4" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+
         <h3>About Our Channel</h3>
         <p>Hello, 
             in this channel we talk about history-related topics, interesting facts, and technology.
@@ -68,7 +101,7 @@
             Our channel has <span class="subscriber-count" id="subscribers">127</span> subscribers and over 5000+ likes, so please subscribe—it's free! Make sure to like as well. You can visit the platform here: 
             <a href="https://www.youtube.com/@MASTERMIND-PRESENCE">YouTube</a>.
         </p>
-        <br>
+
         <h3>How to Subscribe to Our Channel</h3>
         <p>To subscribe to History-Mastermind-presence, follow the steps below:</p>
         <p>Step 1: Open YouTube and search for <b>@Mastermind-presence</b>.</p>
@@ -78,9 +111,9 @@
     </div>
 
     <script>
-        // Fetch YouTube API for live subscriber count (replace with your own API Key)
+        // 2. Fetch YouTube API for live subscriber count (replace with your own API Key)
         const apiKey = 'AIzaSyD9EvQw9O-5RuqV1oPO53QrrHKNHHqrTO8';
-        const channelId = 'https://www.youtube.com/channel/UCpP3UNGcycJFWkKMAYbXAEg'; // Replace with your YouTube Channel ID
+        const channelId = 'UCpP3UNGcycJFWkKMAYbXAEg'; // Replace with your YouTube Channel ID
 
         async function fetchSubscribers() {
             const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`;
@@ -93,6 +126,19 @@
                 console.error('Error fetching subscriber count:', error);
             }
         }
+
+        // 3. Scroll Animation for fade-in elements
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        function handleScroll() {
+            fadeInElements.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Call initially to handle elements already in view
 
         // Call the function on page load
         fetchSubscribers();
