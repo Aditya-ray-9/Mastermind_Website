@@ -11,31 +11,38 @@
             margin: 0;
             padding: 20px;
         }
+
         h1 {
             color: #333;
             text-align: center;
         }
+
         h3 {
             color: #444;
             margin-top: 20px;
         }
+
         p {
             line-height: 1.6;
             color: #555;
         }
+
         a {
             color: #1e90ff;
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
         }
+
         .subscriber-count {
             font-weight: bold;
             font-size: 1.2em;
             color: #ff4500;
             animation: countUp 1s ease-in-out;
         }
+
         @keyframes countUp {
             from {
                 opacity: 0;
@@ -46,6 +53,7 @@
                 transform: translateY(0);
             }
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -54,6 +62,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
         .btn-subscribe {
             display: inline-block;
             background-color: #ff0000;
@@ -65,65 +74,74 @@
             transition: background-color 0.3s ease-in-out;
             animation: fadeIn 1s ease-in-out;
         }
+
         .btn-subscribe:hover {
             background-color: #c30000;
         }
-        .contact-info {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .contact-info h3 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .contact-info p {
-            color: #555;
-            margin-bottom: 5px;
-        }
-        .contact-info a {
-            color: #ff4500;
-            text-decoration: none;
-        }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
+
         /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
         }
+
         /* Scroll Animation */
         .fade-in {
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
+
         .fade-in.visible {
             opacity: 1;
+        }
+
+        /* Splash screen */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #splash-screen img {
+            width: 300px;
+            height: auto;
+        }
+
+        /* Hide the splash screen after 3 seconds */
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
+    <!-- Splash screen -->
+    <div id="splash-screen">
+        <img src="a logo.jpg" alt="YouTube Logo">
+    </div>
+
     <div class="container fade-in">
         <h1>Mastermind-presence</h1>
 
-        <!-- 1. Video Section -->
-        <h3>Watch Our Latest Video</h3>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/Zli-xdkp1O4" 
-        title="YouTube video player" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen></iframe>
-
         <h3>About Our Channel</h3>
         <p>Hello, 
-            in this channel we talk about history-related topics, explain something, we will shortly try to tell crime stories, interesting facts, and technology.
+            in this channel we talk about history-related topics, explain something, cover crime stories, interesting facts, and technology.
         </p>
         <p>
             Our channel has <span class="subscriber-count" id="subscribers">127</span> subscribers and over 5000+ likes, so please subscribe—it's free! Make sure to like as well. You can visit the platform here: 
             <a href="https://www.youtube.com/@MASTERMIND-PRESENCE">YouTube</a>.
         </p>
+
+        <h3>Contact Information</h3>
+        <p>If you need to reach us, please email at:</p>
+        <p>Email: <a href="mailto:mastermind.presence@gmail.com">mastermind.presence@gmail.com</a></p>
+        <p>Or scan the QR code below to visit our YouTube channel:</p>
+        <img src="YOUTUBE CHANNEL QR CODE_qrcode.png" alt="YouTube Channel QR Code" style="width:150px; height:150px;">
 
         <h3>How to Subscribe to Our Channel</h3>
         <p>To subscribe to History-Mastermind-presence, follow the steps below:</p>
@@ -132,15 +150,20 @@
         <p>Step 3: Smash the red subscribe button! Destroy it, break it, teleport it—just make sure it's not red anymore!</p>
         <a class="btn-subscribe" href="https://www.youtube.com/@MASTERMIND-PRESENCE" target="_blank">Subscribe Now</a>
 
-        <!-- Contact Information Section -->
-        <div class="contact-info">
-            <h3>Contact Us</h3>
-            <p>For inquiries, you can reach us at:</p>
-            <p>Email: <a href="mailto:mastermind.presence@gmail.com">mastermind.presence@gmail.com</a></p>
-        </div>
+        <!-- 1. Video Section (Moved to last part) -->
+        <h3>Watch Our Latest Video</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Zli-xdkp1O4" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
     </div>
 
     <script>
+        // 1. Splash Screen logic: hide after 3 seconds
+        setTimeout(function() {
+            document.getElementById('splash-screen').classList.add('hidden');
+        }, 3000);
+
         // 2. Fetch YouTube API for live subscriber count (replace with your own API Key)
         const apiKey = 'AIzaSyD9EvQw9O-5RuqV1oPO53QrrHKNHHqrTO8';
         const channelId = 'UCpP3UNGcycJFWkKMAYbXAEg'; // Replace with your YouTube Channel ID
@@ -167,6 +190,7 @@
                 }
             });
         }
+
         window.addEventListener('scroll', handleScroll);
         handleScroll(); // Call initially to handle elements already in view
 
