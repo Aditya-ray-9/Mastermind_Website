@@ -106,16 +106,12 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            transition: opacity 1s ease-in-out;
         }
 
-        #splash-screen img {
-            width: 300px;
-            height: auto;
-        }
-
-        /* Hide the splash screen after 3 seconds */
-        .hidden {
-            display: none;
+        #splash-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
     </style>
 </head>
