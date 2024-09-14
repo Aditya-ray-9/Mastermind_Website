@@ -83,6 +83,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: background-color 0.5s ease;
+            position: relative;
         }
 
         /* Contact Us Box */
@@ -132,6 +133,8 @@
             margin-top: 20px;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            text-decoration: none;
         }
 
         .btn-subscribe:hover {
@@ -142,9 +145,6 @@
 
         /* Theme Toggle Button */
         .theme-toggle-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
             background-color: var(--accent-color);
             color: white;
             border: none;
@@ -153,6 +153,9 @@
             font-size: 1em;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
 
         .theme-toggle-btn:hover {
@@ -202,10 +205,8 @@
         <img src="a logo.jpg" alt="YouTube Logo">
     </div>
 
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle-btn" id="themeToggleBtn">Switch to Dark Mode</button>
-
     <div class="container fade-in">
+        <button class="theme-toggle-btn" id="themeToggleBtn">Switch to Dark Mode</button>
         <h1>Mastermind-presence</h1>
 
         <h3>About Our Channel</h3>
